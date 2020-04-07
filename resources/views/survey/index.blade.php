@@ -30,6 +30,9 @@
         <td>
             <form action="{{ route('survey.destroy',$survey->id) }}" method="POST">
 
+                <a class="btn btn-info" href="{{ route('question.create',['surveyId'=> $survey->id]) }}">Add Question</a>
+                <a class="btn btn-info" href="{{ route('question.index',['surveyId'=> $survey->id]) }}">Show Question</a>
+
                 <a class="btn btn-info" href="{{ route('survey.show',$survey->id) }}">Show</a>
 
                 <a class="btn btn-primary" href="{{ route('survey.edit',$survey->id) }}">Edit</a>

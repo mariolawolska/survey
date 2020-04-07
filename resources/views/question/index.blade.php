@@ -1,0 +1,58 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+            Survey Name {{ $survey->name }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('question.create') }}"> Create New Question</a>
+        </div>
+    </div>
+</div>
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
+<table class="table table-bordered">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Details</th>
+        <th width="280px">Action</th>
+    </tr>
+    @foreach ($questionCollection as $question)
+    <tr>
+        <td>{{ ++$i }}</td>
+        <td>{{ $question->name }}</td>
+        <td>{{ $question->questionTypeToHuman() }}</td>
+        <td>{{ $question->detail }}</td>
+        <td>
+            <form action="{{ route('question.destroy',$question->id) }}" method="POST">
+
+                <a class="btn btn-info" href="{{ route('question.show', $question->id) }}">Show</a>
+
+                <a class="btn btn-primary" href="{{ route('question.edit', $question->id) }}">Edit</a>
+
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</table>
+
+{!! $questionCollection->links() !!}
+
+@endsection
