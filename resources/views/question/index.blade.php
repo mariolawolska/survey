@@ -11,9 +11,13 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('question.create') }}"> Create New Question</a>
+            <a class="btn btn-success" href="{{ route('question.create') }}">Create New Question</a>
         </div>
     </div>
+</div>
+
+<div class="pull-right">
+    <a class="btn btn-primary" href="{{ route('survey.index') }}">Back to Survey</a>
 </div>
 
 @if ($message = Session::get('success'))
@@ -39,6 +43,9 @@
         <td>
             <form action="{{ route('question.destroy',$question->id) }}" method="POST">
 
+                <a class="btn btn-info" href="{{ route('answer.create',['questionId'=> $question->id]) }}">Show Answers</a>
+                <a class="btn btn-info" href="{{ route('answer.index',['questionId'=> $question->id]) }}">Add Answers</a>
+
                 <a class="btn btn-info" href="{{ route('question.show', $question->id) }}">Show</a>
 
                 <a class="btn btn-primary" href="{{ route('question.edit', $question->id) }}">Edit</a>
@@ -46,7 +53,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</button>
             </form>
         </td>
     </tr>

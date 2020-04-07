@@ -7,7 +7,7 @@
             <h2>Edit Survey</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('survey.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('survey.index') }}">Back</a>
         </div>
     </div>
 </div>

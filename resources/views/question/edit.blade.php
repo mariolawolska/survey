@@ -7,7 +7,7 @@
             <h2>Edit Question</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('question.index', ['surveyId' => $question->survey->id]) }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('question.index', ['surveyId' => $question->survey->id]) }}">Back to Question</a>
         </div>
     </div>
 </div>

@@ -22,3 +22,4 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 
 Route::resource('survey', 'SurveyController');
 Route::resource('question', 'QuestionController');
+Route::resource('answer', 'AnswerController');
