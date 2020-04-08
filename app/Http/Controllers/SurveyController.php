@@ -67,7 +67,7 @@ class SurveyController extends Controller {
         }
 
         $objectArray = array(
-            'survey' => $survey,
+            'survey' => $survey->getAttributes(),
             'question' => $questionArray,
             'answer' => $answerArray
         );
