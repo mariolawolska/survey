@@ -18,7 +18,7 @@ class QuestionController extends Controller {
         $survey = Survey::findOrFail($request->surveyId);
         $request->session()->put('surveyId', $request->surveyId);
 
-        $questionCollection = Question::latest()->where('surveyId', $survey->id)->paginate(5);
+        $questionCollection = Question::latest()->where('surveyId', $survey->id)->orderBy('created_at')->paginate(5);
 
         return view('question.index', compact('questionCollection', 'survey'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -30,10 +30,17 @@ class QuestionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request) {
-        $questionType = Question::$questionType;
-        $surveyId = $request->session()->get('surveyId');
 
-        return view('question.create', compact('questionType', 'surveyId'));
+        if (!empty($request->surveyId)) {
+            $surveyId = $request->surveyId;
+        } else {
+            $surveyId = $request->session()->get('surveyId');
+        }
+
+        $survey = Survey::findOrFail($surveyId);
+        $questionType = Question::$questionType;
+
+        return view('question.create', compact('questionType', 'survey'));
     }
 
     /**

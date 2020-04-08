@@ -19,7 +19,13 @@
                 <div class="card-header">Survey</div>
 
                 <div class="card-body">
-                    ...
+                    <div class="row">
+                        <div class="col-lg-12 margin-tb">
+                            <div class="pull-right">
+                                <a class="btn btn-primary" href="{{ route('survey.index') }}">Show Survey</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

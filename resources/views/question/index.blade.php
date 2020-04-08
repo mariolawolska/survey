@@ -1,3 +1,5 @@
+{{-- question\index.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -32,6 +34,8 @@
         <th>Name</th>
         <th>Type</th>
         <th>Details</th>
+        <th>Answers</th>
+        <th>Created</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($questionCollection as $question)
@@ -40,11 +44,14 @@
         <td>{{ $question->name }}</td>
         <td>{{ $question->questionTypeToHuman() }}</td>
         <td>{{ $question->detail }}</td>
+        <td>{{ $question->answer->count() }}</td>
+        <td>{{ $question->created_at }}</td>
+
         <td>
             <form action="{{ route('question.destroy',$question->id) }}" method="POST">
 
-                <a class="btn btn-info" href="{{ route('answer.create',['questionId'=> $question->id]) }}">Show Answers</a>
-                <a class="btn btn-info" href="{{ route('answer.index',['questionId'=> $question->id]) }}">Add Answers</a>
+                <a class="btn btn-info" href="{{ route('answer.create',['questionId'=> $question->id]) }}">Add Answers</a>
+                <a class="btn btn-info" href="{{ route('answer.index',['questionId'=> $question->id]) }}">Show Answers</a>
 
                 <a class="btn btn-info" href="{{ route('question.show', $question->id) }}">Show</a>
 

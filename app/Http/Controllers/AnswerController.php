@@ -16,12 +16,15 @@ class AnswerController extends Controller {
      */
     public function index(Request $request) {
 
-        $survey = Survey::findOrFail($request->surveyId);
-        $request->session()->put('surveyId', $request->surveyId);
+        $question = Question::findOrFail($request->questionId);
+        $survey = Survey::findOrFail($question->surveyId);
 
-        $questionCollection = Question::latest()->where('surveyId', $survey->id)->paginate(5);
+        $request->session()->put('questionId', $request->questionId);
+        $request->session()->put('surveyId', $question->surveyId);
 
-        return view('question.index', compact('questionCollection', 'survey'))
+        $answerCollection = Answer::latest()->where('questionId', $question->id)->orderBy('created_at')->paginate(5);
+
+        return view('answer.index', compact('answerCollection', 'question', 'survey'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -31,10 +34,11 @@ class AnswerController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request) {
-        $questionType = Question::$questionType;
+
+        $questionId = $request->session()->get('questionId');
         $surveyId = $request->session()->get('surveyId');
 
-        return view('question.create', compact('questionType', 'surveyId'));
+        return view('answer.create', compact('questionType', 'questionId', 'surveyId'));
     }
 
     /**
@@ -45,18 +49,17 @@ class AnswerController extends Controller {
      */
     public function store(Request $request) {
 
-        $surveyId = $request->session()->get('surveyId');
-        $request->surveyId = $surveyId;
+        $questionId = $request->session()->get('questionId');
+        $request->questionId = $questionId;
 
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
-            'type' => 'required',
         ]);
 
-        Question::create($request->all());
+        Answer::create($request->all());
 
-        return redirect()->route('question.index', ['surveyId' => $request->surveyId])
+        return redirect()->route('answer.index', ['questionId' => $request->questionId])
                         ->with('success', 'Question created successfully.');
     }
 
@@ -66,9 +69,9 @@ class AnswerController extends Controller {
      * @param  \App\question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question) {
+    public function show(Answer $answer) {
 
-        return view('question.show', compact('question'));
+        return view('answer.show', compact('answer'));
     }
 
     /**
@@ -77,10 +80,9 @@ class AnswerController extends Controller {
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(question $question) {
+    public function edit(Answer $answer) {
 
-        $questionType = Question::$questionType;
-        return view('question.edit', compact('question', 'questionType'));
+        return view('answer.edit', compact('answer'));
     }
 
     /**
@@ -90,19 +92,18 @@ class AnswerController extends Controller {
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question) {
+    public function update(Request $request, Answer $answer) {
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
-            'type' => 'required',
         ]);
 
-        $surveyId = $request->session()->get('surveyId');
-        $request->surveyId = $surveyId;
+        $questionId = $request->session()->get('questionId');
+        $request->questionId = $questionId;
 
-        $question->update($request->all());
+        $answer->update($request->all());
 
-        return redirect()->route('question.index', ['surveyId' => $surveyId])
+        return redirect()->route('answer.index', ['questionId' => $questionId])
                         ->with('success', 'Question updated successfully');
     }
 
@@ -112,12 +113,12 @@ class AnswerController extends Controller {
      * @param  \App\Question $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Question $question) {
+    public function destroy(Request $request, Answer $answer) {
         $question->delete();
 
-        $surveyId = $request->session()->get('surveyId');
+        $questionId = $request->session()->get('questionId');
 
-        return redirect()->route('question.index', ['surveyId' => $surveyId])
+        return redirect()->route('answer.index', ['questionId' => $questionId])
                         ->with('success', 'Question deleted successfully');
     }
 

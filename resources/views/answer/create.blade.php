@@ -1,4 +1,4 @@
-{{--  --}}
+{{-- answer\create.blade.php --}}
 
 @extends('layouts.app')
 
@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Add New Question</h2>
+            <h2>Add New Answer</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$survey->id]) }}">Back to Question</a>
+            <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$surveyId]) }}">Back to Question</a>
         </div>
     </div>
 </div>
@@ -25,31 +25,19 @@
 </div>
 @endif
 
-<form action="{{ route('question.store') }}" method="POST">
+<form action="{{ route('answer.store') }}" method="POST">
     @csrf
 
     <div class="row">
 
         {{-- Survey Id --}}
-        <input type="hidden" name="surveyId" class="form-control" value="{{ $survey->id }}">
+        <input type="hidden" name="questionId" class="form-control" value="{{ $questionId }}">
 
         {{-- Name --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-        </div>
-
-        {{-- Type --}}
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Type:</strong>
-                <select name="type" id="type" class="form-control">
-                    @foreach($questionType as $id => $type)
-                    <option value="{{ $id }}">{{ $type }} </option>
-                    @endforeach
-                </select>
             </div>
         </div>
 

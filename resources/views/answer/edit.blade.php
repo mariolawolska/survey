@@ -1,4 +1,4 @@
-{{--  --}}
+{{-- answer\edit.blade.php --}}
 
 @extends('layouts.app')
 
@@ -6,10 +6,12 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Add New Question</h2>
+            <h2>Edit Question</h2>
+            <h4>Survey Name[{{ $answer->question->survey->name }}]</h4>
+            <h6>Question Name[{{ $answer->question->name }}]</h6>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$survey->id]) }}">Back to Question</a>
+            <a class="btn btn-primary" href="{{ route('answer.index', ['questionId' => $answer->question->id]) }}">Back to Question</a>
         </div>
     </div>
 </div>
@@ -25,31 +27,16 @@
 </div>
 @endif
 
-<form action="{{ route('question.store') }}" method="POST">
+<form action="{{ route('answer.update', $answer->id) }}" method="POST">
     @csrf
+    @method('PUT')
 
     <div class="row">
-
-        {{-- Survey Id --}}
-        <input type="hidden" name="surveyId" class="form-control" value="{{ $survey->id }}">
-
         {{-- Name --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-        </div>
-
-        {{-- Type --}}
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Type:</strong>
-                <select name="type" id="type" class="form-control">
-                    @foreach($questionType as $id => $type)
-                    <option value="{{ $id }}">{{ $type }} </option>
-                    @endforeach
-                </select>
+                <input type="text" name="name" value="{{ $answer->name }}" class="form-control" placeholder="Name">
             </div>
         </div>
 
@@ -57,11 +44,11 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Detail:</strong>
-                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $answer->detail }}</textarea>
             </div>
         </div>
 
-        {{-- Submit --}}
+        {{-- Submit --}}        
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

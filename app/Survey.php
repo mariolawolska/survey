@@ -11,4 +11,14 @@ class Survey extends Model {
         'name', 'detail'
     ];
 
+    /**
+     * Laravel Relations
+     */
+    public function question() {
+        return $this->hasMany('App\Question', 'surveyId', 'id');
+    }
+
+    /**
+     * Laravel Relations END
+     */
 }

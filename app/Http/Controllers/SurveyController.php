@@ -13,7 +13,7 @@ class SurveyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $surveyCollection = Survey::latest()->paginate(5);
+        $surveyCollection = Survey::latest()->orderBy('created_at')->paginate(5);
 
         return view('survey.index', compact('surveyCollection'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);

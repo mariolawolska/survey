@@ -18,6 +18,10 @@ class Question extends Model {
         return $this->hasOne('App\Survey', 'id', 'surveyId');
     }
 
+    public function answer() {
+        return $this->hasMany('App\Answer', 'questionId', 'id');
+    }
+
     /**
      * Laravel Relations END
      */

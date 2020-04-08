@@ -1,3 +1,5 @@
+{{-- survey\index.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -20,6 +22,8 @@
         <th>No</th>
         <th>Name</th>
         <th>Details</th>
+        <th>Questions</th>
+        <th>Created</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($surveyCollection as $survey)
@@ -27,6 +31,8 @@
         <td>{{ ++$i }}</td>
         <td>{{ $survey->name }}</td>
         <td>{{ $survey->detail }}</td>
+        <td>{{ $survey->question->count() }}</td>
+        <td>{{ $survey->created_at }}</td>
         <td>
             <form action="{{ route('survey.destroy',$survey->id) }}" method="POST">
 
