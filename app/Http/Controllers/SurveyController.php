@@ -53,7 +53,30 @@ class SurveyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Survey $survey) {
-        return view('survey.show', compact('survey'));
+
+        $questionArray = array();
+        foreach ($survey->question as $question) {
+            $questionArray[$question->id] = $question;
+        }
+
+        $answerArray = array();
+        foreach ($survey->question as $question) {
+            foreach ($question->answer as $answer) {
+                $answerArray[$answer->id] = $answer;
+            }
+        }
+
+        $objectArray = array(
+            'survey' => $survey,
+            'question' => $questionArray,
+            'answer' => $answerArray
+        );
+
+        $jsonObject = json_encode($objectArray);
+
+
+
+        return view('survey.show', compact('survey', 'jsonObject'));
     }
 
     /**

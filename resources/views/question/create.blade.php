@@ -7,6 +7,7 @@
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Add New Question</h2>
+            <h4>Survey Name[{{ $survey->name }}]</h4>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$survey->id]) }}">Back to Question</a>
