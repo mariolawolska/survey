@@ -20,16 +20,16 @@
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
 
         <!-- BASE CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/menu.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/vendors.css" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/vendors.css') }}" rel="stylesheet">
 
         <!-- YOUR CUSTOM CSS -->
-        <link href="css/custom.css" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
         <!-- MODERNIZR MENU -->
-        <script src="js/modernizr.js"></script>
+        <script src="{{ asset('js/modernizr.js') }}"></script>
 
     </head>
 
@@ -49,14 +49,15 @@
         @endauth
 
         <!-- COMMON SCRIPTS -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/common_scripts.min.js"></script>
-        <script src="js/velocity.min.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/pw_strenght.js"></script>
+        <script src="{{ asset('js/modernizr.js') }}"></script>
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/common_scripts.min.js') }}"></script>
+        <script src="{{ asset('js/velocity.min.js') }}"></script>
+        <script src="{{ asset('js/functions.js') }}"></script>
+        <script src="{{ asset('js/pw_strenght.js') }}"></script>
 
         <!-- Wizard script -->
-        <script src="js/registration_func.js"></script>
+        <script src="{{ asset('js/registration_func.js') }}"></script>
 
     </body>
 </html>
