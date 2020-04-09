@@ -12,8 +12,11 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.frame.index');
 });
+
+//Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 

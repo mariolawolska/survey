@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+
+<div class="container-fluid full-height">
+    <div class="row row-height">
+        {{-- leftWrapper --}}
+        @include('layouts.frame.content.leftWrapper')
+        <!-- /content-left-wrapper -->
+
+        <div class="col-lg-6 content-right" id="start">
+            <div id="wizard_container">
+                <!-- /top-wizard -->
+                <div class="flex-center position-ref full-height">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -64,4 +69,7 @@
         </div>
     </div>
 </div>
+</div>
+
+
 @endsection
