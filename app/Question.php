@@ -46,12 +46,12 @@ class Question extends Model {
     /**
      * @return string
      */
-    public function questionTypeToHuman() {
+    public static function questionTypeToHuman($type = 0) {
 
         $returnValue = '';
 
-        if (array_key_exists($this->type, self::$questionType)) {
-            $returnValue = self::$questionType[$this->type];
+        if (array_key_exists($type, self::$questionType)) {
+            $returnValue = self::$questionType[$type];
         } else {
             $returnValue = 'Not Set';
         }

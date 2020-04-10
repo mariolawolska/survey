@@ -35,10 +35,15 @@ class AnswerController extends Controller {
      */
     public function create(Request $request) {
 
-        $questionId = $request->session()->get('questionId');
-        $surveyId = $request->session()->get('surveyId');
+        if ($request->questionId) {
+            $questionId = $request->questionId;
+        } else {
+            $questionId = $request->session()->get('questionId');
+        }
 
-        return view('answer.create', compact('questionType', 'questionId', 'surveyId'));
+        $question = Question::findOrFail($questionId);
+
+        return view('answer.create', compact('questionType', 'question'));
     }
 
     /**
@@ -49,7 +54,11 @@ class AnswerController extends Controller {
      */
     public function store(Request $request) {
 
-        $questionId = $request->session()->get('questionId');
+        if ($request->questionId) {
+            $questionId = $request->questionId;
+        } else {
+            $questionId = $request->session()->get('questionId');
+        }
         $request->questionId = $questionId;
 
         $request->validate([

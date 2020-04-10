@@ -55,21 +55,17 @@ class SurveyController extends Controller {
     public function show(Survey $survey) {
 
         $questionArray = array();
-        foreach ($survey->question as $question) {
-            $questionArray[$question->id] = $question;
-        }
-
         $answerArray = array();
         foreach ($survey->question as $question) {
+            $questionArray[$question->id] = $question;
             foreach ($question->answer as $answer) {
-                $answerArray[$answer->id] = $answer;
+                $answerArray[$answer->questionId][$answer->id] = $answer;
             }
         }
 
         $objectArray = array(
             'survey' => $survey->getAttributes(),
-            'question' => $questionArray,
-            'answer' => $answerArray
+            'question' => $questionArray
         );
 
         $jsonObject = json_encode($objectArray);

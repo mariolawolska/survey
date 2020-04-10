@@ -18,12 +18,15 @@
                         <a href="{{ url('/home') }}" class="btn_1">Home</a>
                         @else
                         <a href="{{ route('login') }}" class="btn_1">Login</a>
-
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn_1">Register</a>
-                        @endif
-                        @endauth
                     </div>
+                    <br>
+                    @if (Route::has('register'))
+                    <div class="top-right links">
+                        <a href="{{ route('register') }}" class="btn_1">Register</a>
+                    </div>
+                    @endif
+                    @endauth
+
                     @endif
                 </div>
             </div>

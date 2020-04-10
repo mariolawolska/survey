@@ -25,7 +25,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Type:</strong>
-            {{ $question->questionTypeToHuman() }}
+            {{ App\Question::questionTypeToHuman($question->type) }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

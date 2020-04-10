@@ -7,9 +7,11 @@
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Add New Answer</h2>
+            <h4>Survey Name[{{ $question->survey->name }}]</h4>
+            <h6>Question Name[{{ $question->name }}]</h6>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$surveyId]) }}">Back to Question</a>
+            <a class="btn btn-primary" href="{{ route('question.index',['surveyId'=>$question->survey->id]) }}">Back to Question</a>
         </div>
     </div>
 </div>
@@ -31,7 +33,7 @@
     <div class="row">
 
         {{-- Survey Id --}}
-        <input type="hidden" name="questionId" class="form-control" value="{{ $questionId }}">
+        <input type="hidden" name="questionId" class="form-control" value="{{ $question->id }}">
 
         {{-- Name --}}
         <div class="col-xs-12 col-sm-12 col-md-12">

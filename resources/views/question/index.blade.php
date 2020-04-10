@@ -42,7 +42,7 @@
     <tr>
         <td>{{ ++$i }}</td>
         <td>{{ $question->name }}</td>
-        <td>{{ $question->questionTypeToHuman() }}</td>
+        <td>{{ App\Question::questionTypeToHuman($question->type) }}</td>
         <td>{{ $question->detail }}</td>
         <td>{{ $question->answer->count() }}</td>
         <td>{{ $question->created_at }}</td>
