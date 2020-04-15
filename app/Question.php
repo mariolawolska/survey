@@ -85,4 +85,33 @@ class Question extends Model {
         return $questionId;
     }
 
+    /**
+     * @param type $question
+     * 
+     * @return boolean
+     */
+    public static function hasSubQuestion($question) {
+
+        $questionCollection = Question::where('subquestionId', $question->id)->get();
+        if ($questionCollection->count() > 0) {
+            return $questionCollection;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param type $question
+     * 
+     * @return boolean
+     */
+    public static function isSubQuestion($question) {
+
+        if (empty($question->subquestionId)) {
+            return false;
+        } else {
+            return $question->subquestionId;
+        }
+    }
+
 }

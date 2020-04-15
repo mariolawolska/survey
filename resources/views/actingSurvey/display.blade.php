@@ -28,6 +28,14 @@ $surveyObject = json_decode($jsonObject);
 
 
         @foreach( $surveyObject->question as $question )
+        @php
+
+        //        dump(\App\Question::isSubQuestion($question));
+        dump(\App\Question::hasSubQuestion($question));
+
+        @endphp
+
+
         <div class="step">
             <h3 class="main_question">Question[{{ $question->id }}] {{ $question->name }}</h3>
 
