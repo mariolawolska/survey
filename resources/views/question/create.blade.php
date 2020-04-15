@@ -33,6 +33,10 @@
 
         {{-- Survey Id --}}
         <input type="hidden" name="surveyId" class="form-control" value="{{ $survey->id }}">
+        {{-- Sub Qsuestion Id --}}
+        <input type="hidden" name="subquestionId" class="form-control" value="{{ $subquestionId }}">
+        {{-- Flow --}}
+        <input type="hidden" name="flow" class="form-control" value="{{ $flow }}">
 
         {{-- Name --}}
         <div class="col-xs-12 col-sm-12 col-md-12">

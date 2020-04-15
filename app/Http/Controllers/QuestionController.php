@@ -40,7 +40,10 @@ class QuestionController extends Controller {
         $survey = Survey::findOrFail($surveyId);
         $questionType = Question::$questionType;
 
-        return view('question.create', compact('questionType', 'survey'));
+        $subquestionId = $request->questionId;
+        $flow = $request->flow;
+
+        return view('question.create', compact('questionType', 'survey', 'subquestionId', 'flow'));
     }
 
     /**
@@ -137,6 +140,14 @@ class QuestionController extends Controller {
 
         return redirect()->route('question.index', ['surveyId' => $surveyId])
                         ->with('success', 'Question deleted successfully');
+    }
+
+    public function subquestion(Request $request) {
+        $surveyId = Survey::getSurveyId($request);
+        $questionId = Question::getQuestionId($request);
+
+        dump('$surveyId' . $surveyId);
+        dump('$questionId' . $questionId);
     }
 
 }
