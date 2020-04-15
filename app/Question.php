@@ -77,6 +77,7 @@ class Question extends Model {
 
         if (!empty($request->questionId)) {
             $questionId = $request->questionId;
+            $request->session()->put('questionId', $questionId);
         } else {
             $questionId = $request->session()->get('questionId');
         }

@@ -24,7 +24,7 @@ class QuestionController extends Controller {
 
         $questionCollection = Question::latest()->where('surveyId', $survey->id)->orderBy('created_at')->paginate(5);
 
-        return view('question.index', compact('questionCollection', 'survey'))
+        return view('question.index', compact('questionCollection', 'survey', 'questionId'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -56,7 +56,6 @@ class QuestionController extends Controller {
 
         $request->validate([
             'name' => 'required',
-            'detail' => 'required',
             'type' => 'required',
         ]);
 
@@ -112,7 +111,6 @@ class QuestionController extends Controller {
     public function update(Request $request, Question $question) {
         $request->validate([
             'name' => 'required',
-            'detail' => 'required',
             'type' => 'required',
         ]);
 

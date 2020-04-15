@@ -62,8 +62,7 @@ class AnswerController extends Controller {
         $request->questionId = $questionId;
 
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required'
         ]);
 
         Answer::create($request->all());
@@ -103,8 +102,7 @@ class AnswerController extends Controller {
      */
     public function update(Request $request, Answer $answer) {
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required'
         ]);
 
         $questionId = $request->session()->get('questionId');

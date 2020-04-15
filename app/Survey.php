@@ -31,10 +31,10 @@ class Survey extends Model {
 
         if (!empty($request->surveyId)) {
             $surveyId = $request->surveyId;
+            $request->session()->put('surveyId', $surveyId);
         } else {
             $surveyId = $request->session()->get('surveyId');
         }
-        
         return $surveyId;
     }
 

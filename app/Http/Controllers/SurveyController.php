@@ -20,7 +20,7 @@ class SurveyController extends Controller {
 
         $surveyCollection = Survey::latest()->orderBy('created_at')->paginate(5);
 
-        return view('survey.index', compact('surveyCollection'))
+        return view('survey.index', compact('surveyCollection', 'surveyId'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -41,8 +41,7 @@ class SurveyController extends Controller {
      */
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required'
         ]);
 
         $survey = Survey::create($request->all());
@@ -100,8 +99,7 @@ class SurveyController extends Controller {
      */
     public function update(Request $request, Survey $survey) {
         $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'name' => 'required'
         ]);
 
         $survey->update($request->all());
