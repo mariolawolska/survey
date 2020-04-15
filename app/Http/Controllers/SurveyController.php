@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\Question;
+use App\Answer;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller {
@@ -12,7 +14,10 @@ class SurveyController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+
+        $surveyId = Survey::getSurveyId($request);
+
         $surveyCollection = Survey::latest()->orderBy('created_at')->paginate(5);
 
         return view('survey.index', compact('surveyCollection'))
@@ -40,7 +45,8 @@ class SurveyController extends Controller {
             'detail' => 'required',
         ]);
 
-        Survey::create($request->all());
+        $survey = Survey::create($request->all());
+        $request->session()->put('surveyId', $survey->id);
 
         return redirect()->route('survey.index')
                         ->with('success', 'Survey created successfully.');
@@ -99,6 +105,7 @@ class SurveyController extends Controller {
         ]);
 
         $survey->update($request->all());
+        $request->session()->put('surveyId', $survey->id);
 
         return redirect()->route('survey.index')
                         ->with('success', 'Survey updated successfully');

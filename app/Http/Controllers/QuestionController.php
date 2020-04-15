@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Survey;
 use App\Question;
+use App\Answer;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller {
@@ -15,8 +16,11 @@ class QuestionController extends Controller {
      */
     public function index(Request $request) {
 
-        $survey = Survey::findOrFail($request->surveyId);
-        $request->session()->put('surveyId', $request->surveyId);
+        $surveyId = Survey::getSurveyId($request);
+        $questionId = Question::getQuestionId($request);
+
+        $survey = Survey::findOrFail($surveyId);
+        $request->session()->put('surveyId', $survey->id);
 
         $questionCollection = Question::latest()->where('surveyId', $survey->id)->orderBy('created_at')->paginate(5);
 
@@ -31,11 +35,7 @@ class QuestionController extends Controller {
      */
     public function create(Request $request) {
 
-        if (!empty($request->surveyId)) {
-            $surveyId = $request->surveyId;
-        } else {
-            $surveyId = $request->session()->get('surveyId');
-        }
+        $surveyId = Survey::getSurveyId($request);
 
         $survey = Survey::findOrFail($surveyId);
         $questionType = Question::$questionType;
@@ -51,7 +51,7 @@ class QuestionController extends Controller {
      */
     public function store(Request $request) {
 
-        $surveyId = $request->session()->get('surveyId');
+        $surveyId = Survey::getSurveyId($request);
         $request->surveyId = $surveyId;
 
         $request->validate([
@@ -60,7 +60,20 @@ class QuestionController extends Controller {
             'type' => 'required',
         ]);
 
-        Question::create($request->all());
+        $question = Question::create($request->all());
+        $request->session()->put('questionId', $question->id);
+
+        if (in_array($question->type, Question::$questionsByDefault)) {
+
+            $questionType = Question::questionTypeToHuman($question->type);
+            $questionArray = array(
+                'questionId' => $question->id,
+                'name' => $questionType,
+                'detail' => $questionType);
+
+            Answer::create($questionArray);
+        }
+
 
         return redirect()->route('question.index', ['surveyId' => $request->surveyId])
                         ->with('success', 'Question created successfully.');
@@ -103,10 +116,11 @@ class QuestionController extends Controller {
             'type' => 'required',
         ]);
 
-        $surveyId = $request->session()->get('surveyId');
+        $surveyId = Survey::getSurveyId($request);
         $request->surveyId = $surveyId;
 
         $question->update($request->all());
+        $request->session()->put('questionId', $question->id);
 
         return redirect()->route('question.index', ['surveyId' => $surveyId])
                         ->with('success', 'Question updated successfully');
@@ -121,7 +135,7 @@ class QuestionController extends Controller {
     public function destroy(Request $request, Question $question) {
         $question->delete();
 
-        $surveyId = $request->session()->get('surveyId');
+        $surveyId = Survey::getSurveyId($request);
 
         return redirect()->route('question.index', ['surveyId' => $surveyId])
                         ->with('success', 'Question deleted successfully');

@@ -44,6 +44,15 @@ class Question extends Model {
     );
 
     /**
+     * Questions answered automatically
+     * 
+     * @var array
+     */
+    public static $questionsByDefault = array(
+        3, 10,
+    );
+
+    /**
      * @return string
      */
     public static function questionTypeToHuman($type = 0) {
@@ -57,6 +66,22 @@ class Question extends Model {
         }
 
         return $returnValue;
+    }
+
+    /**
+     * @param type $request
+     * 
+     * @return type
+     */
+    public static function getQuestionId($request) {
+
+        if (!empty($request->questionId)) {
+            $questionId = $request->questionId;
+        } else {
+            $questionId = $request->session()->get('questionId');
+        }
+
+        return $questionId;
     }
 
 }

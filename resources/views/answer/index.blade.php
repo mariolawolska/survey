@@ -37,7 +37,7 @@
 
                 <table class="table table-bordered" style="margin-top: 15px">
                     <tr>
-                        <th>No</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Details</th>
                         <th>Created</th>
@@ -45,7 +45,7 @@
                     </tr>
                     @foreach ($answerCollection as $answer)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ $answer->id }}</td>
                         <td>{{ $answer->name }}</td>
                         <td>{{ $answer->detail }}</td>
                         <td>{{ $answer->created_at }}</td>

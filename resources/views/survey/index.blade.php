@@ -28,7 +28,7 @@
 
                 <table class="table table-bordered " style="margin-top: 15px">
                     <tr>
-                        <th>No</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Details</th>
                         <th>Questions</th>
@@ -37,7 +37,7 @@
                     </tr>
                     @foreach ($surveyCollection as $survey)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ $survey->id }}</td>
                         <td>{{ $survey->name }}</td>
                         <td>{{ $survey->detail }}</td>
                         <td>{{ $survey->question->count() }}</td>
@@ -66,4 +66,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

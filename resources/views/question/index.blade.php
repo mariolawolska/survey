@@ -30,7 +30,7 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>No</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Type</th>
         <th>Details</th>
@@ -40,7 +40,7 @@
     </tr>
     @foreach ($questionCollection as $question)
     <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{ $question->id }}</td>
         <td>{{ $question->name }}</td>
         <td>{{ App\Question::questionTypeToHuman($question->type) }}</td>
         <td>{{ $question->detail }}</td>

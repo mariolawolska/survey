@@ -21,4 +21,21 @@ class Survey extends Model {
     /**
      * Laravel Relations END
      */
+
+    /**
+     * @param type $request
+     * 
+     * @return type
+     */
+    public static function getSurveyId($request) {
+
+        if (!empty($request->surveyId)) {
+            $surveyId = $request->surveyId;
+        } else {
+            $surveyId = $request->session()->get('surveyId');
+        }
+        
+        return $surveyId;
+    }
+
 }
