@@ -63,8 +63,9 @@
                         <td>
                             {{ $question->id }}
                             @if($hasSubQuestion)
-                            @foreach($hasSubQuestion as $question)
-                            [{{ $question->id }}]
+                            [sub
+                            @foreach($hasSubQuestion as $subQuestion)
+                            {{ $subQuestion->id }}]
                             @endforeach
                             @endif
                         </td>

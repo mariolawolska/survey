@@ -6,12 +6,12 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Question</h2>
+            <h2>Edit Answer</h2>
             <h4>Survey Name[{{ $answer->question->survey->name }}]</h4>
             <h6>Question Name[{{ $answer->question->name }}]</h6>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('answer.index', ['questionId' => $answer->question->id]) }}">Back to Question</a>
+            <a class="btn btn-primary" href="{{ route('answer.index', ['questionId' => $answer->question->id]) }}">Back to Answer</a>
         </div>
     </div>
 </div>

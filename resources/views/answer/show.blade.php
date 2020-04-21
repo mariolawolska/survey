@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Show Question</h2>
+            <h2>Show Answer</h2>
             <h4>Survey Name[{{ $answer->question->survey->name }}]</h4>
             <h6>Question Name[{{ $answer->question->name }}]</h6>
         </div>

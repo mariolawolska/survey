@@ -121,7 +121,7 @@ class AnswerController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Answer $answer) {
-        $question->delete();
+        $answer->delete();
 
         $questionId = $request->session()->get('questionId');
 

@@ -117,6 +117,7 @@ class QuestionController extends Controller {
             'type' => 'required',
         ]);
 
+
         $surveyId = Survey::getSurveyId($request);
         $request->surveyId = $surveyId;
 
