@@ -50,10 +50,8 @@
                                 {{-- Show Question --}}
                                 @if($survey->question->count()>0)
                                 <a class="btn btn-info btn-action" href="{{ route('question.index',['surveyId'=> $survey->id]) }}">Show Question</a>
-                                @endif
-                                {{-- Show Question END --}}                                
-
                                 <a class="btn btn-info btn-action" href="{{ route('survey.show',$survey->id) }}">Show</a>
+                                @endif
 
                                 <a class="btn btn-primary btn-action" href="{{ route('survey.edit',$survey->id) }}">Edit</a>
 

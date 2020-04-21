@@ -8,7 +8,6 @@
     <div class="row row-height">
         {{-- leftWrapper --}}
         @include('layouts.frame.content.leftWrapper')
-        <!-- /content-left-wrapper -->
 
         <div class="col-lg-6 content-right" id="start">
             <div id="container">
@@ -71,5 +70,3 @@
         </div>
     </div>
     @endsection
-
-    >>>>>>> origin/master
