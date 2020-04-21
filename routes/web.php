@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('layouts.frame.index');
 });
 
-//Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
@@ -26,3 +25,7 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::resource('survey', 'SurveyController');
 Route::resource('question', 'QuestionController');
 Route::resource('answer', 'AnswerController');
+
+Route::get('/cardgame', 'CardGameController@index')->name('cardgame');
+Route::get('/startGame', 'CardGameController@startGame')->name('startgame');
+Route::get('/nextTurn', 'CardGameController@nextTurn')->name('nextturn');
