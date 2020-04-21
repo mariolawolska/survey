@@ -45,8 +45,29 @@
                         <th width="280px">Action</th>
                     </tr>
                     @foreach ($questionCollection as $question)
-                    <tr>
-                        <td>{{ $question->id }}</td>
+                    @php
+                    $hasSubQuestion = \App\Question::hasSubQuestion($question);
+                    $isSubQuestion = \App\Question::isSubQuestion($question);
+
+                    @endphp
+                    <tr
+                        {{-- Sub Question --}}
+                        @if($hasSubQuestion)
+                        {{ \App\Question::returnBgColorFromId($question->id) }}
+                        @endif
+                        @if($isSubQuestion)
+                        {{ \App\Question::returnBgColorFromId($isSubQuestion) }}
+                        @endif
+                        {{-- Sub Question END --}}
+                        >
+                        <td>
+                            {{ $question->id }}
+                            @if($hasSubQuestion)
+                            @foreach($hasSubQuestion as $question)
+                            [{{ $question->id }}]
+                            @endforeach
+                            @endif
+                        </td>
                         <td>{{ $question->name }}</td>
                         <td>{{ App\Question::questionTypeToHuman($question->type) }}</td>
                         <td>{{ $question->detail }}</td>

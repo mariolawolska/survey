@@ -116,4 +116,16 @@ class Question extends Model {
         return $returnValue;
     }
 
+    /**
+     * @param int $questionId
+     * 
+     * @return string
+     */
+    public static function returnBgColorFromId($questionId) {
+        $code = dechex(crc32($questionId));
+        $bgcolor = substr($code, 0, 6);
+
+        return 'bgcolor="#' . $bgcolor . '"';
+    }
+
 }
