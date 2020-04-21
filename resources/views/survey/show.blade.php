@@ -3,6 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< HEAD
 
 
 <div class="container-fluid full-height">

@@ -104,22 +104,6 @@ class SurveyController extends Controller {
 
         $survey->update($request->all());
         $request->session()->put('surveyId', $survey->id);
-
-        return redirect()->route('survey.index')
-                        ->with('success', 'Survey updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Survey $survey
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Survey $survey) {
-        $survey->delete();
-
-        return redirect()->route('survey.index')
-                        ->with('success', 'Survey deleted successfully');
     }
 
 }

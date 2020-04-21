@@ -112,6 +112,8 @@ class Question extends Model {
         } else {
             return $question->subquestionId;
         }
+
+        return $returnValue;
     }
 
 }

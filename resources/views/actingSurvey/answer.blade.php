@@ -1,4 +1,5 @@
 {{-- 1 => Single choice (radio buttons)) --}}
+
 @if( $question->type == 1)
 <div class="form-group">
     <label class="container_radio version_2" title="{{ $answer->detail }}"> {{ $answer->name }}
@@ -82,4 +83,3 @@
     </div>
 </div>
 @endif
-

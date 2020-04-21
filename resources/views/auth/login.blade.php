@@ -12,6 +12,7 @@
         <div class="col-lg-6 content-right" id="start">
             <div id="wizard_container">
                 <!-- /top-wizard -->
+
                 <h3 class="main_question wizard-header">{{ __('Login') }}</h3>
                 <div class="flex-center position-ref full-height">
                     <form method="POST" action="{{ route('login') }}">

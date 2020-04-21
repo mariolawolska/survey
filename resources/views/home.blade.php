@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container-fluid full-height">
     <div class="row row-height">
         {{-- leftWrapper --}}
@@ -20,5 +19,4 @@
     </div>
 
 </div>
-
 @endsection
