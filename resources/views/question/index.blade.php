@@ -48,18 +48,17 @@
                     @php
                     $hasSubQuestion = \App\Question::hasSubQuestion($question);
                     $isSubQuestion = \App\Question::isSubQuestion($question);
-
                     @endphp
+                    {{-- Sub Question --}}
                     <tr
-                        {{-- Sub Question --}}
                         @if($hasSubQuestion)
                         {{ \App\Question::returnBgColorFromId($question->id) }}
                         @endif
                         @if($isSubQuestion)
                         {{ \App\Question::returnBgColorFromId($isSubQuestion) }}
                         @endif
-                        {{-- Sub Question END --}}
                         >
+                        {{-- Sub Question END --}}
                         <td>
                             {{ $question->id }}
                             @if($hasSubQuestion)

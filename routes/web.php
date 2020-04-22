@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
+Route::post('survey/surveySave', 'SurveyController@surveySave')->name('survey.surveySave');
 Route::resource('survey', 'SurveyController');
 Route::resource('question', 'QuestionController');
 Route::resource('answer', 'AnswerController');

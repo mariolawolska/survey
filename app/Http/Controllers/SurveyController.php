@@ -61,7 +61,9 @@ class SurveyController extends Controller {
 
         $questionArray = array();
         $answerArray = array();
+        $questionQty = 1;
         foreach ($survey->question as $question) {
+            $questionQty++;
             $questionArray[$question->id] = $question;
             foreach ($question->answer as $answer) {
                 $answerArray[$answer->questionId][$answer->id] = $answer;
@@ -73,9 +75,23 @@ class SurveyController extends Controller {
             'question' => $questionArray
         );
 
+        /**
+         * Adding additional ingredients
+         */
+        $objectArray['survey']['questionQty'] = $questionQty;
+        /**
+         *  Summary Question
+         */
+        $objectArray['question'][$questionQty]['id'] = $questionQty;
+        $objectArray['question'][$questionQty]['surveyId'] = $survey->id;
+        $objectArray['question'][$questionQty]['name'] = 'Summary';
+        $objectArray['question'][$questionQty]['type'] = 100;
+        $objectArray['question'][$questionQty]['detail'] = 'Summary Text';
+
+        /**
+         * Preparing json object
+         */
         $jsonObject = json_encode($objectArray);
-
-
 
         return view('survey.show', compact('survey', 'jsonObject'));
     }
@@ -120,6 +136,15 @@ class SurveyController extends Controller {
 
         return redirect()->route('survey.index')
                         ->with('success', 'Survey deleted successfully');
+    }
+
+    public function surveySave(Request $request) {
+
+        $surveyId = Survey::getSurveyId($request);
+        $userId = 67;
+
+        dump('$surveyId ' . $surveyId);
+        dd($request);
     }
 
 }
