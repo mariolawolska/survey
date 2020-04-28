@@ -34,6 +34,8 @@
     </head>
 
     <body>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
         @auth
         @include('layouts.frame.content.circleSide')
         @endauth
@@ -49,15 +51,15 @@
         @endauth
 
         <!-- COMMON SCRIPTS -->
-        <script src="{{ asset('js/modernizr.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="{{ asset('js/common_scripts.min.js') }}"></script>
-        <script src="{{ asset('js/velocity.min.js') }}"></script>
-        <script src="{{ asset('js/functions.js') }}"></script>
-        <script src="{{ asset('js/pw_strenght.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/modernizr.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/common_scripts.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/velocity.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pw_strenght.js') }}"></script>
 
         <!-- Wizard script -->
-        <script src="{{ asset('js/registration_func.js') }}"></script>
-
+        <script type="text/javascript" src="{{ asset('js/registration_func.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/review_func.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/survey_func.js') }}"></script>
     </body>
 </html>

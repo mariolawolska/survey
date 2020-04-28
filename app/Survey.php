@@ -38,4 +38,9 @@ class Survey extends Model {
         return $surveyId;
     }
 
+    public static function getSurveySummary($POST) {
+//                <!--$surveySummary = \App\Survey::getSurveySummary($_POST);-->
+        dump($POST);
+    }
+
 }

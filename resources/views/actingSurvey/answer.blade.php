@@ -1,9 +1,8 @@
 {{-- 1 => Single choice (radio buttons)) --}}
-
 @if( $question->type == 1)
 <div class="form-group">
-    <label class="container_radio version_2" title="{{ $answer->detail }}"> {{ $answer->name }} [{{ $answer->id }}]
-        <input type="radio" name='questionId##{{$question->id}}' value="{{ $answer->id }}" class="required" onchange="getVals(this, '{{ $answer->name }}');">
+    <label class="container_radio version_2" title="{{ $answer->detail }}"> {{ $answer->name }} Q:{{$question->id}}/A:{{ $answer->id }}
+        <input type="radio" name='questionId##{{$question->id}}' value="{{ $answer->id }}" class="required" onchange="getVals(this, '{{ $answer->id }}');">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -12,8 +11,8 @@
 {{-- 2 => Multiple choice (checkboxes) --}}
 @if( $question->type == 2)
 <div class="form-group">
-    <label class="container_check version_2" title="{{ $answer->detail }}"> {{ $answer->name }} [{{ $answer->id }}]
-        <input type="checkbox" name="questionId##{{$question->id}}[]" value="{{ $answer->id }}" class="required" onchange="getVals(this, 'question_2[]');">
+    <label class="container_check version_2" title="{{ $answer->detail }}"> {{ $answer->name }} Q:{{$question->id}}/A:{{ $answer->id }}
+        <input type="checkbox" name="questionId##{{$question->id}}[]" value="{{ $answer->id }}" class="required" onchange="getVals(this, 'question_{{$question->id}}[]');">
         <span class="checkmark"></span>
     </label>
 </div>
@@ -22,14 +21,8 @@
 {{-- 3 => Text --}}
 @if( $question->type == 3)
 <div class="form-group">
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class=" add_top_30">
-                <label>Additional information</label>
-                <textarea name="questionId##{{$question->id}}" class="form-control required" style="height:150px;" placeholder="{{ $question->detail }}" onkeyup="getVals(this, '{{ $answer->name }}');"></textarea>
-            </div>
-        </div>
-    </div>
+    Q:{{$question->id}}/A:{{ $answer->id }}
+    <textarea name="questionId##{{$question->id}}" class="form-control questionId##{{$question->id}} required" style="height:150px;" placeholder="{{ $question->detail }}" onkeyup="getVals(this, 'questionId##{{$question->id}}');"></textarea>
 </div>
 @endif
 
