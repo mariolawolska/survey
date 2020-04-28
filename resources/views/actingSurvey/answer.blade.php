@@ -1,7 +1,7 @@
 {{-- 1 => Single choice (radio buttons)) --}}
 @if( $question->type == 1)
 <div class="form-group">
-    <label class="container_radio version_2" title="{{ $answer->detail }}"> {{ $answer->name }} Q:{{$question->id}}/A:{{ $answer->id }}
+    <label class="container_radio version_2" title="{{ $answer->detail }}"> {{ $answer->name }}
         <input type="radio" name='questionId##{{$question->id}}' value="{{ $answer->id }}" class="required" onchange="getVals(this, '{{ $answer->id }}');">
         <span class="checkmark"></span>
     </label>
@@ -11,7 +11,7 @@
 {{-- 2 => Multiple choice (checkboxes) --}}
 @if( $question->type == 2)
 <div class="form-group">
-    <label class="container_check version_2" title="{{ $answer->detail }}"> {{ $answer->name }} Q:{{$question->id}}/A:{{ $answer->id }}
+    <label class="container_check version_2" title="{{ $answer->detail }}"> {{ $answer->name }}
         <input type="checkbox" name="questionId##{{$question->id}}[]" value="{{ $answer->id }}" class="required" onchange="getVals(this, 'question_{{$question->id}}[]');">
         <span class="checkmark"></span>
     </label>
@@ -21,7 +21,6 @@
 {{-- 3 => Text --}}
 @if( $question->type == 3)
 <div class="form-group">
-    Q:{{$question->id}}/A:{{ $answer->id }}
     <textarea name="questionId##{{$question->id}}" class="form-control questionId##{{$question->id}} required" style="height:150px;" placeholder="{{ $question->detail }}" onkeyup="getVals(this, 'questionId##{{$question->id}}');"></textarea>
 </div>
 @endif
