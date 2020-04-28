@@ -1,7 +1,7 @@
 /*  Wizard */
 jQuery(function ($) {
     "use strict";
-    $('form#wrapped').attr('action', 'survey.surveySave');
+    $('form#wrapped').attr('action', 'surveySave');
     $("#wizard_container").wizard({
         stepsWrapper: "#wrapped",
         submit: ".submit",

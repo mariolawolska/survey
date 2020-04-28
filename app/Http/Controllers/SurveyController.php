@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Survey;
 use App\Question;
 use App\Answer;
+use App\SurveyResults;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller {
@@ -57,7 +58,9 @@ class SurveyController extends Controller {
      * @param  \App\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(Survey $survey) {
+    public function show(Survey $survey, Request $request) {
+
+        $request->session()->put('surveyId', $survey->id);
 
         $questionArray = array();
         $answerArray = array();
@@ -139,12 +142,63 @@ class SurveyController extends Controller {
     }
 
     public function surveySave(Request $request) {
-
         $surveyId = Survey::getSurveyId($request);
         $userId = 67;
 
-        dump('$surveyId ' . $surveyId);
-        dd($request);
+        $surveyRequest['surveyId'] = $surveyId;
+        $surveyRequest['userId'] = $userId;
+
+        foreach ($_POST as $question => $answer) {
+
+            $questionAnswerArray = $this->getQuestionAnswer($question, $answer);
+
+            if ($questionAnswerArray) {
+
+                $surveyRequest['questionId'] = $questionAnswerArray['question'];
+                $surveyRequest['answer'] = $questionAnswerArray['answer'];
+
+                $surveyResults = SurveyResults::create($surveyRequest);
+            }
+        }
+
+        return redirect()->route('survey.index')
+                        ->with('success', 'Survey deleted successfully');
+    }
+
+    /**
+     * @param type $question
+     * @param type $answer
+     * 
+     * @return boolean
+     */
+    private function getQuestionAnswer($question, $answer) {
+
+        $questionArray = $questionAnswerArray = array();
+
+        if (strpos($question, 'questionId') !== false) {
+            $questionArray = explode("##", $question);
+        }
+
+        if (empty($questionArray)) {
+            return false;
+        } else {
+
+            /**
+             * Multiple choice (checkboxes)
+             */
+            if (is_array($answer)) {
+                $questionAnswerArray['question'] = $questionArray[1];
+                $questionAnswerArray['answer'] = implode(',', $answer);
+                return $questionAnswerArray;
+            } else {
+                /**
+                 * All other types of questions
+                 */
+                $questionAnswerArray['question'] = $questionArray[1];
+                $questionAnswerArray['answer'] = $answer;
+                return $questionAnswerArray;
+            }
+        }
     }
 
 }

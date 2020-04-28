@@ -26,7 +26,3 @@ Route::post('survey/surveySave', 'SurveyController@surveySave')->name('survey.su
 Route::resource('survey', 'SurveyController');
 Route::resource('question', 'QuestionController');
 Route::resource('answer', 'AnswerController');
-
-Route::get('/cardgame', 'CardGameController@index')->name('cardgame');
-Route::get('/startGame', 'CardGameController@startGame')->name('startgame');
-Route::get('/nextTurn', 'CardGameController@nextTurn')->name('nextturn');

@@ -34,13 +34,13 @@ class Question extends Model {
         1 => 'Single choice (radio buttons)',
         2 => 'Multiple choice (checkboxes)',
         3 => 'Text',
-        4 => 'Classification (dependent dropdown)',
-        5 => 'Email',
-        6 => 'Date',
-        7 => 'Slider',
-        8 => 'Star rating grid',
-        9 => 'Essay (long text)',
-        10 => 'File upload',
+//        4 => 'Classification (dependent dropdown)',
+//        5 => 'Email',
+//        6 => 'Date',
+//        7 => 'Slider',
+//        8 => 'Star rating grid',
+//        9 => 'Essay (long text)',
+//        10 => 'File upload',
     );
 
     /**

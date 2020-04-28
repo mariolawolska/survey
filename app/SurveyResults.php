@@ -14,13 +14,12 @@ class SurveyResults extends Model {
     protected $dates = ['created_at'];
     protected $table = 'survey_results';
     protected $fillable = [
-        'id', 'questionId', 'name', 'detail'
+        'id', 'surveyId', 'questionId', 'answer', 'userId'
     ];
 
     /**
      * Laravel Relations
      */
-
     /**
      * Laravel Relations END
      */
