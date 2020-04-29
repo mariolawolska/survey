@@ -10,7 +10,7 @@
             <div id="wizard_container">
                 <!-- /top-wizard -->
                 <h3 class="main_question wizard-header">{{ __('Dashboard') }}</h3>
-                <label>You are normal user.</label>
+                <label>You are the survey creator.</label>
                 <div class="pull-right" id="bottom-wizard">
                     <a  href="{{ route('survey.index') }}"><button class="submit">Show Survey</button></a>
                 </div>
