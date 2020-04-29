@@ -9,11 +9,8 @@
         <div class="col-lg-6 content-right" id="start">
             <div id="wizard_container">
                 <!-- /top-wizard -->
-                <h3 class="main_question wizard-header">{{ __('Dashboard') }}</h3>
-                <label>You are normal user.</label>
-                <div class="pull-right" id="bottom-wizard">
-                    <a  href="{{ route('survey.index') }}"><button class="submit">Show Survey</button></a>
-                </div>
+                <h3 class="main_question wizard-header">Thank you for taking the time to complete this survey.</h3>
+                <label>We realize how important your feedback is to our continued improvement and success.</label>
             </div>
         </div>
     </div>
