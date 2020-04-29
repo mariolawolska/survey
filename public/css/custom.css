@@ -6,3 +6,7 @@
     font-size: 12px;
     padding:6px
 }
+.b-line{
+    border-bottom:1px solid #3A48B0; padding-bottom: 60px;
+}
+p{font-size: 16px!important}

@@ -65,8 +65,6 @@
                     }
                 });
 
-                console.log(questionsAnswersArray);
-
                 /**
                  * Adding a question structure
                  * 
@@ -127,9 +125,6 @@
                     }
                     flyingId = questionsAnswers['questionId'];
                 });
-
-
-
 
             }
         }
@@ -193,7 +188,7 @@
      */
     function removeLastComma(strng) {
         var n = strng.lastIndexOf(",");
-        var newStrng = strng.substring(0, n)
+        var newStrng = strng.substring(0, n);
         return newStrng;
     }
 </script>
