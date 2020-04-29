@@ -65,6 +65,8 @@
                     }
                 });
 
+                console.log(questionsAnswersArray);
+
                 /**
                  * Adding a question structure
                  * 
@@ -111,15 +113,19 @@
                  * @param {type} questionsAnswers
                  * @returns {undefined}
                  */
+                var flyingId = 0;
                 $.each(questionsAnswersArray, function (i, questionsAnswers) {
+                    if (flyingId != questionsAnswers['questionId']) {
+                        var questionId = questionsAnswers['questionId'];
+                        var divId = '#review_message_' + questionId;
 
-                    var questionId = questionsAnswers['questionId'];
-                    var divId = '#review_message_' + questionId;
-
-                    var str = $(divId).text();
-                    var newStr = str.substring(0, str.length - 2);
-                    $(divId).html(newStr);
-
+                        var str = $(divId).text();
+                        console.log('str ' + str);
+                        var newStr = removeLastComma(str);
+                        console.log('newStr ' + newStr);
+                        $(divId).html(newStr);
+                    }
+                    flyingId = questionsAnswers['questionId'];
                 });
 
 
@@ -178,5 +184,16 @@
             var recoverQuestionId = recoverQuestionIdRaw.replace(/[^a-zA-Z0-9]/g, '');
             return recoverQuestionId;
         }
+    }
+
+    /**
+     * @param {type} strng
+     * 
+     * @returns {unresolved}
+     */
+    function removeLastComma(strng) {
+        var n = strng.lastIndexOf(",");
+        var newStrng = strng.substring(0, n)
+        return newStrng;
     }
 </script>

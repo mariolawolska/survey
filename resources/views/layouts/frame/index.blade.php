@@ -19,12 +19,12 @@
                         @else
                         <a href="{{ route('login') }}" class="btn_1">Login</a>
                     </div>
-                    <br>
-                    @if (Route::has('register'))
-                    <div class="top-right links">
-                        <a href="{{ route('register') }}" class="btn_1">Register</a>
-                    </div>
-                    @endif
+                    {{-- a <br> --}}
+                    {{--  @if (Route::has('register'))                                      --}}
+                    {{--  <div class="top-right links">--}}
+                    {{--     <a href="{{ route('register') }}" class="btn_1">Register</a>   --}}
+                    {{--  </div>                                                            --}}
+                    {{--  @endif                                                            --}}
                     @endauth
 
                     @endif

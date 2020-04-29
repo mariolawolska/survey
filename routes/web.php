@@ -26,3 +26,7 @@ Route::post('survey/surveySave', 'SurveyController@surveySave')->name('survey.su
 Route::resource('survey', 'SurveyController');
 Route::resource('question', 'QuestionController');
 Route::resource('answer', 'AnswerController');
+
+Route::get('onlineSurvey/{surveyName}', 'OnlineSurveyController@onlineSurvey')->name('onlineSurvey');
+Route::post('onlineSurvey/surveySave', 'OnlineSurveyController@surveySave')->name('onlineSurvey.surveySave');
+Route::resource('onlineSurvey', 'OnlineSurveyController');
